@@ -1,0 +1,322 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+ body{
+	 background-image:url(bg1.jpg);
+	}
+    #ball{
+	  position:absolute;
+	}
+	#stick{
+	  position:absolute; 	
+	}
+			#zz {
+
+				width: 100%;
+
+				height: 100%;
+
+				position: absolute;
+
+				left: 0px;
+
+				top: 0px;
+
+				background: rgba(0, 0, 0, 0.5);
+
+				text-align: center;
+
+				margin: auto;
+
+				display: none;
+
+			}
+#aa {
+
+				width: 100%;
+
+				height: 100%;
+
+				position: absolute;
+
+				left: 0px;
+
+				top: 0px;
+
+				background: rgba(0, 0, 0, 0.5);
+
+				text-align: center;
+
+				margin: auto;
+
+				display: none;
+
+			}
+
+			
+
+			#end {
+
+				display: inline-block;
+
+				width: 150px;
+
+				height: 50px;
+
+				background: blanchedalmond;
+
+				font-size: 20px;
+
+				text-align: center;
+
+				line-height: 50px;
+
+				color: red;
+
+				border-radius: 20px;
+
+	
+
+			}
+
+			
+
+			#text {
+
+				width: 150px;
+
+				height: 50px;
+
+				color: aquamarine;
+
+				margin: auto;
+
+				font-size: 20px;
+				
+
+		
+
+			}
+			a{
+				text-decoration:none;
+				color: aquamarine;
+				}
+
+			.fenshu{
+
+				width: 150px;
+
+				height: 50px;
+
+				color: orange;
+
+				margin: auto;
+
+				font-size: 20px;
+
+				margin-top: 200px;
+
+			}
+	
+			</style>
+</head>
+
+<body>
+<div>
+		<div id="zz">
+
+			<div id="score" class="fenshu">
+
+				分数:0分
+
+			</div>
+
+			<div id="text">
+              
+			<a href="start.html">重新开始</a>
+
+
+			</div>
+			<div id="end">
+
+				Game Over
+
+			</div>
+
+		</div>
+        
+       	<div id="aa">
+
+			<div id="score1" class="fenshu">
+
+				分数:0分
+
+			</div>
+
+			<div id="text">
+              
+			<a href="newgame.html">下一关</a>
+
+			</div>
+
+
+
+		</div>
+       <div id="m" style="font-size:30px; width:20%;height:5%;position:absolute; top:4.2%; left: 75%;text-align:right"></div>
+  <div id="ball"><img src="ball.png"></div>
+  <div id="stick"><img src="hand.png"></div>
+
+<div id="divTime"></div>
+ <div  id="m" style="font-size:20px; width:7%;height:5%;position:absolute; top:4.2%; left: 85.5%;text-align:right"></div>
+	</div>
+ <script type="text/javascript">
+        var aa = document.getElementById("aa")
+
+		var zz = document.getElementById("zz")
+
+		var end = document.getElementById('end')
+         var score1_=document.getElementById("score1")
+		var score_=document.getElementById("score")
+		var text = document.getElementById('text')
+	
+
+		//分数
+
+		var score=0;
+         var score1=0;
+		
+		//重新开始
+
+		end.onclick = function() {
+
+			zz.style.display = 'none';
+            aa.style.display = 'none';
+
+		}
+
+
+
+    window.onload=function(){
+		 
+                var beginTime = new Date();
+                var gameTime = 15;
+                var remainTime;
+                function checkTime()
+                {
+                    var nowTime = new Date();
+                    remainTime = gameTime-parseInt((nowTime.getTime()-beginTime.getTime())/1000);
+                    document.getElementById('m').innerHTML = '剩余时间：'+remainTime+'秒';
+					if(remainTime==0){
+								  if(score1>=7){
+									  aa.style.display = 'inline-block';
+			            }else if(score<7){
+							zz.style.display = 'inline-block';
+							}
+						
+					   clearInterval(checkTime);
+				
+
+				return;
+						}
+                }
+				checkTime();
+				
+				
+				
+			function stop()
+                {
+                    clearInterval(interval);
+                }
+                interval = setInterval(function(){
+                
+                    checkTime();
+                    if(remainTime==0) {stop()}
+                },100);
+		document.getElementById('stick').style.left='500px';
+	   document.getElementById('stick').style.top='400px';
+	   document.getElementById('stick').style.width='120px';
+	   document.getElementById('stick').style.height='195px';
+	   document.getElementById('ball').style.left='0px'; 
+	   document.getElementById('ball').style.top='0px';
+	   document.getElementById('ball').style.width='65px';
+	   document.getElementById('ball').style.height='65px';	
+	   var divSk=document.getElementById('stick');
+	   var divBall=document.getElementById('ball');
+	   
+	   document.onkeydown=function(){       
+			  if(event.keyCode==39){
+				  divSk.style.left=parseInt(divSk.style.left)+20+'px';
+				  }
+			  if(event.keyCode==40){
+				  divSk.style.top=parseInt(divSk.style.top)+20+'px';
+				  }
+			  if(event.keyCode==37){
+				  divSk.style.left=parseInt(divSk.style.left)-20+'px';
+				  }
+			  if(event.keyCode==38){
+				  divSk.style.top=parseInt(divSk.style.top)-20+'px';
+				  }  
+       };
+	   
+	   var x=0,y=0;
+	   var xchange=1,ychange=1;
+    
+	   function play(){
+		 x+=xchange;
+		 y+=ychange;
+		 
+		 if(x<0||x==(document.documentElement.clientWidth)-parseInt(divBall.style.width)){    // 小球横坐标=界面宽-直径
+		   	 xchange=-xchange;
+		 }
+		 if(y<0||y==(document.documentElement.clientHeight)-parseInt(divBall.style.height)){  // 小球纵坐标=界面高-直径
+		   	 y=0;
+		 }
+		   if(remainTime==0){
+								
+						
+					   clearInterval(play);
+				
+
+				return;
+						}
+		 divBall.style.left=x+'px';
+		 divBall.style.top=y+'px'; 
+		 
+		 var bl=parseInt(divBall.style.left);
+         var bll=bl+parseInt(divBall.style.width);
+		 var bt=parseInt(divBall.style.top);
+		 var btt=bt+parseInt(divBall.style.height);
+
+		 var sl=parseInt(divSk.style.left);
+		 var sll=sl+parseInt(divSk.style.width);
+		 var st=parseInt(divSk.style.top);
+		 var stt=st+parseInt(divSk.style.height);
+		 
+		 
+         var i=0
+		 if(bt==st && bll>sl && sll>bl) { 
+		    score++;
+			score_.innerHTML='分数:'+score+'分'; 
+			score1++;
+			score1_.innerHTML='分数:'+score1+'分';       // 小球纵坐标+小球直径=棍子纵坐标 且 小球最右坐标>棍子最左  且  小球最左<棍子最右    
+		  i=i+1;
+		  divBall.style.top=y+'px';
+			return y=0;
+				 //window.setInterval(play,500000);
+			}
+
+       
+	   };
+	   checkTime();
+	   play();
+	   window.setInterval(play,2); 
+   }
+
+			  
+	
+	 </script>
+</body>
+</html>
