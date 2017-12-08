@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		#all{
+			position: absolute;
+			margin: 0px auto;
+			margin-left: 300px;
+			margin-top: 200px;
+			width: 502px;
+		
+		}
+		
+		.div1 li{
+			float: left;
+			list-style: none;
+		    display: none;
+		}
+		.div1 ul{
+			height: 138px;
+			width: 442px;
+			overflow: hidden;
+		}
+		.head span ul{
+			font-size: 12px;
+			
+			position: relative;
+			left: 250px;
+			top: 8px;
+			height: 14px;
+			overflow: hidden;
+		}
+		.head li{
+			list-style: none;
+			display: none;
+		}
+		#tianmao{
+			font-weight: bold;
+			position: relative;
+			top: 20px;
+			font-family: "微软雅黑";
+			font-size: 13px;
+		}
+		a{
+			text-decoration: none;
+		}
+		a:hover{
+			color: orange;
+			text-decoration: underline;
+		}
+		button{
+			border: 1px solid #EDEDED;
+			background-color: white;
+		}
+		.head{
+			font-size: 13px;
+			
+			
+		}
+		#body{
+			height: 138px;
+		}
+		.div1 { 
+			position: relative; 
+			overflow: auto; 
+			text-align: center;
+			left: 30px;
+			top: -140px;}
+			#btn4{
+				position: relative;
+				left: 440px;
+			}
+			.btn1{
+				position: relative;
+				left: 479px;
+				top: -8px;
+			}
+			.dian{
+				
+				color: black;
+				font-weight: bold;
+			}
+			#footer{
+				background-color: #F6F6F6;
+				border: 1px solid #E5E5E5;
+				text-align: center;
+				width: 502px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+		<div id="all">
+			<header>
+				<div class="head">
+				<span id="tianmao"><a href="" >天猫</a>精选</span>
+			
+				<span>
+					<ul>
+						 <li><span class="dian">电器城</span>·数码家电低至五折疯抢 限量！</li>
+					     <li><span class="dian">医药馆</span>·正品避孕套 放心去爱~</li>
+					     <li><span class="dian">家装馆</span>·家装抢购 TOP热榜等你来~</li>
+				     </ul>
+				</span>
+				<span>
+					<button type="button" class="btn1" onclick="fun1()"> < </button><button type="button" class="btn1" onclick="hao1()"> > </button>
+					
+				</span>
+			</div>
+			</header>
+			<article>
+		 <div id="body">
+			<span><button type="button" id="btn3" style="height:138px;" onclick="fun()"><img src="images/back.JPG"></button></span>
+			<span><button type="button" id="btn4" style="height:138px;" onclick="hao()"><img src="images/go.JPG"></button></span>
+			  <div class="div1">
+			<ul>
+				<li><img src="images/middle1.JPG"></li>
+				<li><img src="images/middle2.JPG"></li>
+				<li><img src="images/middle3.JPG"></li>
+				
+			</ul>
+		</div>
+			 
+		 </div>
+		 </article>
+		 <footer>
+		  <div id="footer">
+		 	<img src="images/bottom1.JPG" id="adiads" />
+		 	<img src="images/bottom2.JPG"  id="meifubao"/>
+		 	<img src="images/bottom3.JPG" id="lenovo"/>
+		 	<img src="images/bottom4.JPG" id="balaba" />
+		 	<img src="images/bottom5.JPG" id="suboer"/>
+		 	<img src="images/bottom6.JPG" id="shihuakou"/>
+		  </div>
+		 
+		</footer>
+		</div>
+	</body>
+	<script src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(".head ul li:eq(0)").css('display','block');
+		var index1 = 0;
+		var hao1 = function(){
+			$($(".head li")[index1]).fadeOut();
+			index1++;
+			if(index1==3){
+				index1=0;
+			}
+			$($(".head li")[index1]).css('display','block');
+		}
+		
+		var fun1 = function(){
+			$($(".head li")[index1]).fadeOut();
+			if(index1==3){
+				index1 = $("li").length;
+				
+			}
+			index1--;
+			$($(".head li")[index1]).css('display','block')
+		}
+		setInterval(hao1,1500);
+		
+		 $(".div1 ul li:eq(0)").css('display','block');
+		var index = 0;
+		var hao = function(){
+			$($(".div1 li")[index]).fadeOut();
+			index++;
+			if(index==3){
+				index=0;
+			}
+			$($(".div1 li")[index]).css('display','block');
+		}
+		
+		var fun = function(){
+			$($(".div1 li")[index]).fadeOut();
+			if(index==3){
+				index = $("li").length;
+				
+			}
+			index--;
+			$($(".div1 li")[index]).css('display','block')
+		}
+		setInterval(hao,1000);
+
+		$("#adiads").click(function(){
+			
+            window.open('https://www.adidas.com.cn/');
+});
+				$("#meifubao").click(function(){
+			
+            window.open('http://www.meifubao.com/');
+});
+		$("#lenovo").click(function(){
+			
+            window.open('http://www.lenovo.com/');
+});
+		$("#balaba").click(function(){
+			
+            window.open('http://www.balabala.com.cn/');
+});
+		$("#suboer").click(function(){
+			
+            window.open('http://www.supor.com.cn/');
+});
+		$("#shihuakou").click(function(){
+			
+            window.open('http://www.schwarzkopf.com/en/home.html');
+});
+	</script>
+</html>
