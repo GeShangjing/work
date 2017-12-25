@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+ table{
+	 position:absolute;
+	 top:250px;
+	 left:500px;
+	
+	 width:400px;
+	 height:202px;
+	 text-align:center;
+	 padding:0px;}
+	 td{
+		 font-weight:bold;}
+	input{
+		border:1px solid black;}
+	body{
+		background-image:url(timg1.jpg);}
+	  .button-blue {
+	background: #4477a1;      }                     
+</style>
+</head>
+
+<body>
+<form id="frm" name="fr" action="服务器.html" method="get">
+    <table>
+      <tr>
+        <td>用户：</td> 
+        <td> <input type="text" id="user" name="user"/></td>
+        <td width="150"><span id="errorUser" class="error"></span></td>
+      </tr>
+       <tr>
+        <td>密码：</td>
+        <td><input type="password" id="pwd" name="pwd"/> </td>
+         <td width="150"><span id="errorPwd" class="error"></span></td>
+      </tr>
+      <tr>
+       <td colspan="2" align="center">
+       <input type="submit" class="button-blue" value=" 登 录 "/> 
+        <input type="button" class="button-blue" id="btnRegister" value=" 注 册 "/>
+         </td>
+      </tr>
+    </table>
+     </form>
+</body>
+ <script type="text/javascript">
+ function getValue(controlName){
+	  var result='';
+	  	 var sea= document.location.search.substr(1);
+		 var arrs = sea.split('&');
+		 	for(var i = 0;i<arrs.length;i++){ 
+			var res = arrs[i].split('=');
+			if(res[0]==controlName){
+				result = decodeURI(res[1]);
+				}
+			}
+			return result
+	  }
+ 
+   window.onload=function(){
+	    var f = document.fr;
+	   f.onsubmit=function(){
+		   
+		   
+		  
+		    var user= document.getElementById('user');
+		
+		
+		   if(!user.value){
+			  // alert('用户没有填写');
+			   user.focus();
+			   return false;
+			   }
+			   else if(getValue('user1')!=user.value){
+				   return false;
+				   }
+		   else if(!/^\w*$/.test(user.value)){
+			 //  alert('请输入有效字符');
+			   user.select(); 
+			   return false;
+			   }
+			   
+			var pwd = document.getElementById('pwd');
+	     if(!pwd.value){
+			//   alert('密码没有填写');
+			   pwd.focus()
+			   return false;
+			   }
+			   else if(getValue('pwd1')!=pwd.value){
+				  return false;
+				  }
+		   else if(pwd.value.length < 3){
+			   //alert('密码太短了');
+			   pwd.select();
+			   return false;
+			   }
+	    };
+					   document.getElementById('user').onblur = function(){
+				    		
+		 var user= document.getElementById('user');
+		   if(!user.value){
+			   document.getElementById('errorUser').innerHTML = '用户没有填写!';
+			   user.focus();
+			   return false;
+			   }
+			   if(getValue('user1')!=user.value){
+				   return false;
+				   }
+			   
+			 /*  if(!/^\w*$/.test(user.value)){
+			  document.getElementById('errorUser').innerHTML ='请输入有效字符';
+			   user.select(); 
+			   return false;
+			   }*/
+		var pwd = document.getElementById('pwd');
+		    if(!pwd.value){
+			  document.getElementById('errorPwd').innerHTML = '密码没有填写!';
+			   pwd.focus()
+			   return false;
+			   }
+		   if(pwd.value.length < 3){
+			   document.getElementById('errorPwd').innerHTML = '密码太短了!';
+			    pwd.select();
+			   return false;
+			   }
+			  if(getValue('pwd1')!=pwd.value){
+				  return false;
+				  }
+			   document.getElementById('errorUser').innerHTML = '';
+			    document.getElementById('errorPwd').innerHTML = '';
+				   };
+				   		  document.getElementById('btnRegister').onclick=function(){
+		  document.location.href = '注册界面.html';
+						  };
+   }
+			 </script>
+
+</html>

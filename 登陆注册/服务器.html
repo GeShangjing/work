@@ -1,0 +1,53 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+ body{
+	 background-image:url(timg.jpg);
+	 text-align:center;
+	 color:#FFF}
+</style>
+</head>
+
+<body>
+ <h1>这是服务器处理页面</h1>
+ <h2 id="welcome"></h2>
+ <input id="btnSearch" type="button" value="哒哒"/>
+ 
+ <script type="text/javascript">
+ // 根据控件的name，得到用户填写的内容
+  function getValue(controlName){
+	  var result='';
+	  	 var sea= document.location.search.substr(1);
+		 var arrs = sea.split('&');
+		 	for(var i = 0;i<arrs.length;i++){ 
+			var res = arrs[i].split('=');
+			if(res[0]==controlName){
+				result = decodeURI(res[1]);
+				}
+			}
+			return result
+	  }
+ 
+ window.onload=function(){
+	 document.getElementById('btnSearch').onclick=function(){
+		 var sea= document.location.search.substr(1);
+		 alert(sea);
+		var arrs = sea.split('&');
+		//alert(arrs.length);
+	    // alert(arrs[0])		//user=tom
+		for(var i = 0;i<arrs.length;i++){ 
+			var res = arrs[i].split('=');
+			alert(res[0]);  //控件的name
+			alert(decodeURI(res[1]));   // 控件中用户输入的内容
+			}
+		  }
+		  document.getElementById('welcome').innerHTML = '欢迎'+getValue('user');
+	 }
+ </script>
+</body>
+</html>
+	
